@@ -5,7 +5,7 @@
 * Run `pod install` from project dir and launch NineTestApp.xcworkspace
 * In the project implemented simple example of MVVM architecture, using self-written Box class for data binding. All parts are located in appropriate virtual folders (Views, ViewModels, Model)
 
-## 3rd party libraries
+### 3rd party libraries
 * SDWebImage has been used for async loading and caching images. 
 * Quicktype.io has been used for autogenerating mapping object
 
