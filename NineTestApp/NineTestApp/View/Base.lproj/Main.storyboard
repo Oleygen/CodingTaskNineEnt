@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6ez-38-yga">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Stories View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="StoriesViewController" customModule="NineTestApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vtd-QF-u8w">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="9Ru-pj-LrT">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="6nJ-MD-IdD">
+                                <rect key="frame" x="197" y="465" width="20" height="20"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="vtd-QF-u8w" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Qzd-Cf-jc1"/>
+                            <constraint firstItem="6nJ-MD-IdD" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Uc1-xz-icE"/>
+                            <constraint firstItem="6nJ-MD-IdD" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="bu8-mm-f1h"/>
+                            <constraint firstAttribute="bottom" secondItem="vtd-QF-u8w" secondAttribute="bottom" id="hMC-5a-UFf"/>
+                            <constraint firstItem="vtd-QF-u8w" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="muG-JJ-g3I"/>
+                            <constraint firstItem="vtd-QF-u8w" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="rvv-AB-Und"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="xxV-Wv-mW7"/>
+                    <connections>
+                        <outlet property="activityIndicator" destination="6nJ-MD-IdD" id="d6z-5Y-QaA"/>
+                        <outlet property="collectionView" destination="vtd-QF-u8w" id="C6v-XG-e7l"/>
+                        <segue destination="WIC-gd-pqG" kind="show" identifier="showWebView" id="TbL-QA-kjB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="19" y="-189"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="x13-YW-IdD">
+            <objects>
+                <navigationController id="6ez-38-yga" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="awS-6f-2OE">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="XG5-Zw-9m3"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rOO-4Z-WXz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-801" y="-190"/>
+        </scene>
+        <!--Web View Controller-->
+        <scene sceneID="4aK-G4-Z27">
+            <objects>
+                <viewController id="WIC-gd-pqG" customClass="WebViewController" customModule="NineTestApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HD5-Rr-jO0">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W7L-zV-iqu">
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="pBb-9X-nhe">
+                                <rect key="frame" x="138.5" y="838" width="137" height="4"/>
+                            </progressView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="s0A-bm-bSa"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="pBb-9X-nhe" firstAttribute="centerX" secondItem="s0A-bm-bSa" secondAttribute="centerX" id="9HW-GQ-gxc"/>
+                            <constraint firstItem="W7L-zV-iqu" firstAttribute="top" secondItem="s0A-bm-bSa" secondAttribute="top" id="G0c-bv-zRt"/>
+                            <constraint firstItem="s0A-bm-bSa" firstAttribute="bottom" secondItem="pBb-9X-nhe" secondAttribute="bottom" constant="20" id="a2D-84-PIO"/>
+                            <constraint firstItem="pBb-9X-nhe" firstAttribute="width" secondItem="HD5-Rr-jO0" secondAttribute="width" multiplier="0.33" id="aLE-cf-jQo"/>
+                            <constraint firstAttribute="bottom" secondItem="W7L-zV-iqu" secondAttribute="bottom" id="jlB-of-fUX"/>
+                            <constraint firstItem="W7L-zV-iqu" firstAttribute="trailing" secondItem="s0A-bm-bSa" secondAttribute="trailing" id="oOa-3z-xoK"/>
+                            <constraint firstItem="W7L-zV-iqu" firstAttribute="leading" secondItem="s0A-bm-bSa" secondAttribute="leading" id="zaD-C4-WhW"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="deQ-XY-wJ9"/>
+                    <connections>
+                        <outlet property="progressView" destination="pBb-9X-nhe" id="dTZ-Zp-vMO"/>
+                        <outlet property="webView" destination="W7L-zV-iqu" id="i27-Dv-oLQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="r6y-ej-kfF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="874" y="-190"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
