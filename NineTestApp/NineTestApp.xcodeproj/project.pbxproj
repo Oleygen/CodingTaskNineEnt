@@ -107,13 +107,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		009B3C292827BFB900A89433 /* 3rdPartyLibs */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = 3rdPartyLibs;
-			sourceTree = "<group>";
-		};
 		009B3C2E2827DCDD00A89433 /* StoriesList */ = {
 			isa = PBXGroup;
 			children = (
@@ -183,7 +176,6 @@
 				009B3C3D2827F6F000A89433 /* API */,
 				00F35221282655F800D33897 /* task_ios.md */,
 				00F3521A2826481000D33897 /* Services */,
-				009B3C292827BFB900A89433 /* 3rdPartyLibs */,
 				00F352192826480300D33897 /* ViewModel */,
 				00F35218282647FE00D33897 /* View */,
 				00F35217282647FA00D33897 /* Model */,

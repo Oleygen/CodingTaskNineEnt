@@ -30,7 +30,7 @@ class StoryCell: UICollectionViewCell {
         self.abstractLabel.text = item.theAbstract ?? "No abstract given"
         self.lineLabel.text = item.byLine ?? "No line given"
         
-        let smallestImage = item.relatedImages?.min(by: { img1, img2 in
+        let smallestImage = item.relatedImages.min(by: { img1, img2 in
             img1.width * img1.height < img2.width * img2.height
         })
         var url: URL?

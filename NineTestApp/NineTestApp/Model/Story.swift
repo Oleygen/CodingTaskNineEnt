@@ -15,6 +15,7 @@ struct Story: Codable {
     let displayName: String
     let assets: [Asset]
     let relatedAssets, relatedImages: [JSONAny]
+    let assetType: String
     let timeStamp: Int
 }
 
@@ -26,22 +27,33 @@ struct Asset: Codable {
     let url: String
     let lastModified: Int
     let sponsored: Bool
-    let headline: String
-    let indexHeadline, tabletHeadline, theAbstract, byLine: String?
-    let acceptComments: Bool?
-    let numberOfComments: Int?
-    let relatedAssets: [Asset]?
-    let companies: [Company]?
-    let sources: [Source]?
-    let overrides: Overrides?
-    let timeStamp: Int
+    let headline, indexHeadline, tabletHeadline, theAbstract: String
+    let byLine: String
+    let acceptComments: Bool
+    let numberOfComments: Int
+    let relatedAssets: [RelatedAsset]
+    let relatedImages: [AssetRelatedImage]
     let signPost: String?
+    let companies: [Company]
+    let legalStatus: LegalStatus
+    let sources: [Source]
+    let assetType: AssetAssetType
+    let overrides: Overrides
+    let timeStamp: Int
     let onTime: Int?
-    let body, liveArticleSummary: String?
-    let relatedPosts: [JSONAny]?
-    let live: Bool?
-    let extendedAbstract: String?
-    let relatedImages: [AssetRelatedImage]?
+    let hasVideo: Bool?
+}
+
+enum AssetAssetType: String, Codable {
+    case article = "ARTICLE"
+    case video = "VIDEO"
+}
+
+// MARK: - Author
+struct Author: Codable {
+    let name, title, email: String
+    let relatedAssets: [JSONAny]
+    let relatedImages: [AuthorRelatedImage]
 }
 
 // MARK: - AuthorRelatedImage
@@ -55,26 +67,23 @@ struct AuthorRelatedImage: Codable {
     let photographer: String
     let type: PurpleType
     let width, height: Int
+    let assetType: RelatedImageAssetType
     let timeStamp: Int
 
     enum CodingKeys: String, CodingKey {
         case id, categories, brands, authors, url, lastModified, sponsored
         case relatedImageDescription = "description"
-        case photographer, type, width, height, timeStamp
+        case photographer, type, width, height, assetType, timeStamp
     }
 }
 
-// MARK: - Author
-struct Author: Codable {
-    let name, title, email: String
-    let relatedAssets: [JSONAny]
+enum RelatedImageAssetType: String, Codable {
+    case image = "IMAGE"
 }
 
-
-
 enum Description: String, Codable {
-    case afr = "afr"
     case empty = ""
+    case jessicaSierAFRWoodcut = "Jessica Sier AFR Woodcut"
     case purple = " "
 }
 
@@ -92,15 +101,44 @@ struct Category: Codable {
 struct Company: Codable {
     let id: Int
     let companyCode, companyName, abbreviatedName, exchange: String
+    let companyNumber: String?
 }
 
 enum LegalStatus: String, Codable {
+    case approved = "Approved"
     case none = "None"
 }
 
 // MARK: - Overrides
 struct Overrides: Codable {
     let overrideHeadline, overrideAbstract: String
+}
+
+// MARK: - RelatedAsset
+struct RelatedAsset: Codable {
+    let id: Int
+    let categories: [Category]
+    let authors: [Author]
+    let url: String
+    let lastModified: Int
+    let sponsored: Bool
+    let assetType: AssetAssetType
+    let headline: String
+    let timeStamp: Int
+    let onTime: Int?
+    let brands: [Brand]?
+    let lastPublishedDate: Int?
+}
+
+// MARK: - Brand
+struct Brand: Codable {
+    let title: TagID
+    let orderNum: Int
+}
+
+enum TagID: String, Codable {
+    case afr = "AFR"
+    case theNewYorkTimes = "The New York Times"
 }
 
 // MARK: - AssetRelatedImage
@@ -113,19 +151,21 @@ struct AssetRelatedImage: Codable {
     let relatedImageDescription, photographer: String
     let type: FluffyType
     let width, height: Int
-    let xLarge2X, large2X: String?
+    let assetType: RelatedImageAssetType
+    let xLarge2X, xLarge, large2X, large: String?
+    let thumbnail2X, thumbnail: String?
     let timeStamp: Int
-    let xLarge, large, thumbnail2X, thumbnail: String?
 
     enum CodingKeys: String, CodingKey {
         case id, categories, brands, authors, url, lastModified, sponsored
         case relatedImageDescription = "description"
-        case photographer, type, width, height
+        case photographer, type, width, height, assetType
         case xLarge2X = "xLarge@2x"
+        case xLarge
         case large2X = "large@2x"
-        case timeStamp, xLarge, large
+        case large
         case thumbnail2X = "thumbnail@2x"
-        case thumbnail
+        case thumbnail, timeStamp
     }
 }
 
@@ -133,6 +173,7 @@ enum FluffyType: String, Codable {
     case afrArticleInline = "afrArticleInline"
     case afrArticleLead = "afrArticleLead"
     case afrIndexLead = "afrIndexLead"
+    case articleLeadNarrow = "articleLeadNarrow"
     case articleLeadWide = "articleLeadWide"
     case landscape = "landscape"
     case thumbnail = "thumbnail"
@@ -146,12 +187,6 @@ struct Source: Codable {
     enum CodingKeys: String, CodingKey {
         case tagID = "tagId"
     }
-}
-
-enum TagID: String, Codable {
-    case afr = "AFR"
-    case newStatesman = "New Statesman"
-    case theNewYorkTimes = "The New York Times"
 }
 
 // MARK: - Encode/decode helpers
